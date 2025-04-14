@@ -26,4 +26,11 @@ def analise_student_data(file_path):
     except (FileNotFoundError, ValueError) as e:
         print(f"\nErro: {e}")
 
+#  Verifica se o script está sendo executado diretamente pelo Python
+if __name__ == "__main__":
+  
+  # Solicita ao usuário que informe o caminho do arquivo de dados (CSV ou JSON)
+  file_path = input("Entre com o caminho do arquivo: ")
+  # Chama a função principal passando o caminho do arquivo informado
+  analise_student_data(file_path)
     
