@@ -32,6 +32,12 @@ def analise_student_data(file_path):
         print(f"Quantidade de homens: {quant_masculino}")
         print(f"Quantidade de mulheres: {quant_feminino}")
         print(f"Quantidade de registros sem dados sobre a educação dos pais: {sem_educacao_parental}")
+        
+        # Requisito 2 - Limpeza de dados
+        df.dropna(subset=['Parent_Education_Level'], inplace=True)
+        df['Attendance (%)'] = df['Attendance (%)'].fillna(df['Attendance (%)'].median())
+        total_attendance = df['Attendance (%)'].sum()
+        print(f"Total Attendance: {total_attendance:.2f}")
 
         
     # Captura erros relacionados a caminho inválido ou formato de arquivo incorreto
