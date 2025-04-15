@@ -40,20 +40,34 @@ def analise_student_data(file_path):
         print(f"Total Attendance: {total_attendance:.2f}")
         
         # Requisito 3 - Consulta de Dados
+        colunas_numericas = [
+            'Attendance (%)', 'Midterm_Score', 'Final_Score',
+            'Assignments_Avg', 'Quizzes_Avg', 'Participation_Score',
+            'Projects_Score', 'Total_Score', 'Study_Hours_per_Week',
+            'Stress_Level', 'Sleep_Hours_per_Night'
+        ]
+
         while True:
-            column_name = input("Entre com o nome da coluna para análise ou digite SAIR: ") #entrar com as opções de coluna aqui
-            if column_name.lower() == 'sair':
-                break
-            if column_name not in df.columns:
-                print("Nome da coluna inválido")
-            else:
-                if pd.api.types.is_numeric_dtype(df[column_name]):
-                    print(f"Média da Coluna {column_name}: {df[column_name].mean():.2f}")
-                    print(f"Mediana da Coluna {column_name}: {df[column_name].median():.2f}")
-                    print(f"Moda da Coluna {column_name}: {df[column_name].mode()[0]:.2f}")
-                    print(f"Desvio Padrão da Coluna {column_name}: {df[column_name].std():.2f}")
+            print("\n--- MENU DE CONSULTA DE DADOS ---")
+            for idx, coluna in enumerate(colunas_numericas, start=1):
+                print(f"{idx}. {coluna}")
+            print("0. Sair da consulta e continuar o programa")
+
+            try:
+                escolha = int(input("Selecione o número da coluna para análise: "))
+                if escolha == 0:
+                    break
+                elif 1 <= escolha <= len(colunas_numericas):
+                    coluna_selecionada = colunas_numericas[escolha - 1]
+                    print(f"\nAnálise da Coluna: {coluna_selecionada}")
+                    print(f"Média: {df[coluna_selecionada].mean():.2f}")
+                    print(f"Mediana: {df[coluna_selecionada].median():.2f}")
+                    print(f"Moda: {df[coluna_selecionada].mode()[0]:.2f}")
+                    print(f"Desvio Padrão: {df[coluna_selecionada].std():.2f}")
                 else:
-                    print("Coluna não numérica. Por favor escolha uma coluna númerica.") #entrar com as opções de coluna aqui
+                    print("Opção inválida. Escolha um número válido.")
+            except ValueError:
+                print("Entrada inválida. Digite apenas números.")
 
 
         
