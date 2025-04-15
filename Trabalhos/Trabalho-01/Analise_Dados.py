@@ -22,6 +22,18 @@ def analise_student_data(file_path):
         else:
             raise ValueError("Formato inválido! Use arquivos .CSV ou .JSON")
         
+        # Requisito 1 do Trabalho - Resumo das Informações
+        quant_dados = len(df)
+        quant_masculino = len(df[df['Gender'] == 'Male'])
+        quant_feminino = len(df[df['Gender'] == 'Female'])
+        sem_educacao_parental = df['Parent_Education_Level'].isnull().sum()
+
+        print(f"Quantidade de dados carregados: {quant_dados}") #diminuir 1 dos registros
+        print(f"Quantidade de homens: {quant_masculino}")
+        print(f"Quantidade de mulheres: {quant_feminino}")
+        print(f"Quantidade de registros sem dados sobre a educação dos pais: {sem_educacao_parental}")
+
+        
     # Captura erros relacionados a caminho inválido ou formato de arquivo incorreto
     except (FileNotFoundError, ValueError) as e:
         print(f"\nErro: {e}")
