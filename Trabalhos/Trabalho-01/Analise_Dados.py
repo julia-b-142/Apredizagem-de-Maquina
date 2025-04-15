@@ -105,3 +105,41 @@ if __name__ == "__main__":
         print("1. Usar arquivo Students_Granding_Dataset")
         print("2. Informar manualmente o caminho de um arquivo (.csv ou .json)")
         print("3. Sair")
+        
+        escolha = input("Escolha uma opção (1, 2 ou 3): ").strip()
+
+        if escolha == "1":
+            file_path = "/content/Students_Grading_Dataset.csv"  # Local do arquivo
+            if os.path.exists(file_path):
+                analise_student_data(file_path)
+                break
+            else:
+                print("Erro: Arquivo 'Students_Granding_Dataset.csv' não encontrado.")
+                continue  # Volta ao menu
+
+        elif escolha == "3":
+            print("Encerrando o programa.")
+            break
+
+        elif escolha == "2":
+            while True:
+                file_path = input("Digite o caminho completo do arquivo (.csv ou .json): ").strip()
+
+                if not file_path:
+                    print("Erro: O caminho não pode estar vazio. Tente novamente.")
+                    continue
+
+                if not (file_path.lower().endswith('.csv') or file_path.lower().endswith('.json')):
+                    print("Erro: Formato inválido! Aceitamos apenas arquivos .csv ou .json.")
+                    continue
+
+                if not os.path.exists(file_path):
+                    print("Erro: Arquivo não encontrado. Verifique o caminho e tente novamente.")
+                    continue
+
+                analise_student_data(file_path)
+                break  # Sai do loop interno (opção 3)
+            break  # Sai do menu principal após análise
+
+        else:
+            print("Opção inválida! Por favor, escolha 1, 2 ou 3.")
