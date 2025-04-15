@@ -38,6 +38,23 @@ def analise_student_data(file_path):
         df['Attendance (%)'] = df['Attendance (%)'].fillna(df['Attendance (%)'].median())
         total_attendance = df['Attendance (%)'].sum()
         print(f"Total Attendance: {total_attendance:.2f}")
+        
+        # Requisito 3 - Consulta de Dados
+        while True:
+            column_name = input("Entre com o nome da coluna para análise ou digite SAIR: ") #entrar com as opções de coluna aqui
+            if column_name.lower() == 'sair':
+                break
+            if column_name not in df.columns:
+                print("Nome da coluna inválido")
+            else:
+                if pd.api.types.is_numeric_dtype(df[column_name]):
+                    print(f"Média da Coluna {column_name}: {df[column_name].mean():.2f}")
+                    print(f"Mediana da Coluna {column_name}: {df[column_name].median():.2f}")
+                    print(f"Moda da Coluna {column_name}: {df[column_name].mode()[0]:.2f}")
+                    print(f"Desvio Padrão da Coluna {column_name}: {df[column_name].std():.2f}")
+                else:
+                    print("Coluna não numérica. Por favor escolha uma coluna númerica.") #entrar com as opções de coluna aqui
+
 
         
     # Captura erros relacionados a caminho inválido ou formato de arquivo incorreto
