@@ -69,8 +69,30 @@ def analise_student_data(file_path):
             except ValueError:
                 print("Entrada inválida. Digite apenas números.")
 
+        # Requisito 4 - Gráficos
+            plt.figure(figsize=(10, 6))
+            plt.scatter(df['Sleep_Hours_per_Night'], df['Total_Score'])
+            plt.xlabel("Horas de Sono")
+            plt.ylabel("Nota Final")
+            plt.title("Gráfico de Dispersão: Horas de Sono X Nota Final")
+            plt.show()
 
-        
+            plt.figure(figsize=(10, 6))
+            df.groupby('Age')['Midterm_Score'].mean().plot(kind='bar')
+            plt.xlabel("Idade")
+            plt.ylabel("Média das Notas Intermediárias")
+            plt.title("Gráfico de Barras: Idade X Média das Notas Intermediárias")
+            plt.show()
+
+            age_bins = [0, 17, 21, 24, float('inf')]
+            age_labels = ['Até 17', '18 a 21', '22 a 24', '25 ou mais']
+            df['Age Group'] = pd.cut(df['Age'], bins=age_bins, labels=age_labels, right=False)
+            age_group_counts = df['Age Group'].value_counts()
+            plt.figure(figsize=(8, 8))
+            plt.pie(age_group_counts, labels=age_group_counts.index, autopct='%1.1f%%', startangle=90)
+            plt.title('Idades')
+            plt.show()
+                
     # Captura erros relacionados a caminho inválido ou formato de arquivo incorreto
     except (FileNotFoundError, ValueError) as e:
         print(f"\nErro: {e}")
