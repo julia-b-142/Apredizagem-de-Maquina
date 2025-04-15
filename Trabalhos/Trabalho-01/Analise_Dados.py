@@ -99,9 +99,9 @@ def analise_student_data(file_path):
 
 #  Verifica se o script está sendo executado diretamente pelo Python
 if __name__ == "__main__":
-  
-  # Solicita ao usuário que informe o caminho do arquivo de dados (CSV ou JSON)
-  file_path = input("Entre com o caminho do arquivo: ")
-  # Chama a função principal passando o caminho do arquivo informado
-  analise_student_data(file_path)
-    
+    while True:
+        print("\n--- MENU DE INÍCIO ---")
+        print("Escolha uma das opções")
+        print("1. Usar arquivo Students_Granding_Dataset")
+        print("2. Informar manualmente o caminho de um arquivo (.csv ou .json)")
+        print("3. Sair")
