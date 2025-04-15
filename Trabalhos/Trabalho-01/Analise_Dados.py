@@ -84,8 +84,8 @@ def analise_student_data(file_path):
             plt.title("Gráfico de Barras: Idade X Média das Notas Intermediárias")
             plt.show()
 
-            age_bins = [0, 17, 21, 24, float('inf')]
-            age_labels = ['Até 17', '18 a 21', '22 a 24', '25 ou mais']
+            age_bins = [0, 18, 22, 25, float('inf')]
+            age_labels = ['Até 17', '18 a 21', '22 a 24', '25 ou mais              ']
             df['Age Group'] = pd.cut(df['Age'], bins=age_bins, labels=age_labels, right=False)
             age_group_counts = df['Age Group'].value_counts()
             plt.figure(figsize=(8, 8))
